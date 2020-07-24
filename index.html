@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bg-video-style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div data-video="g0mZQ1skbsE" class="header__video js-background-video">
+            <div class="header__background">
+                <div id="yt-player"></div>
+            </div>
+        </div>
+        <div class="header__video-overlay js-video-overlay" style="background-image: url('https://img.youtube.com/vi/g0mZQ1skbsE/maxresdefault.jpg');"></div>
+        <h1 class="header__title">Video Title</h1>
+    </div>
+
+    <!-- THIS IS WHAT WE NEED -->
+    <div class="bg-video" data-video="g0mZQ1skbsE" data-autoplay="true" data-mute="true" data-btn-play="false" data-btn-mute="false">
+        <div class="bg-video__video-overlay js-video-overlay">
+            <img src="https://img.youtube.com/vi/g0mZQ1skbsE/maxresdefault.jpg" alt="bg-video-overlay">
+        </div>
+        <h1 class="bg-video__title">Lorem Ipsum</h1>
+        <!-- <button type="button" class="bg-video__btn-mute">Mute</button> -->
+        <!-- <button type="button" class="bg-video__btn-play">Play / Pause</button> -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="bg-video-script.js"></script>
+</body>
+
+</html>
