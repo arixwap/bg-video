@@ -16,28 +16,90 @@
             margin: 0;
         }
 
-        h1 {
+        h1,
+        p {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            font-size: 3em;
             text-transform: uppercase;
             letter-spacing: 4px;
             opacity: 0.9;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            margin: 50px auto;
+        }
+
+        .row .bg-video {
+            flex: 0 0 30%;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Example Background Video Covered -->
-    <div class="bg-video" data-video="LXb3EKWsInQ">
-        <div class="bg-video__overlay">
-            <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+    <!-- Example Background Video -->
+    <div class="bg-video bg-video--size-full" data-video="LXb3EKWsInQ">
+        <div class="bg-video__embed">
+            <div class="bg-video__overlay">
+                <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+            </div>
+            <h1 class="bg-video__title">Full Screen</h1>
+            <div class="bg-video__controller">
+                <button type="button" class="bg-video__btn-sound"></button>
+                <button type="button" class="bg-video__btn-pause"></button>
+            </div>
         </div>
-        <h1 class="bg-video__title">Title</h1>
-        <div class="bg-video__controller">
-            <button type="button" class="bg-video__btn-mute"></button>
-            <button type="button" class="bg-video__btn-pause"></button>
+    </div>
+
+    <div class="row">
+
+        <div class="bg-video bg-video--size-classic" data-video="LXb3EKWsInQ">
+            <div class="bg-video__embed">
+                <div class="bg-video__overlay">
+                    <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+                </div>
+                <p class="bg-video__title">Classic 4:3</p>
+                <div class="bg-video__controller">
+                    <button type="button" class="bg-video__btn-sound"></button>
+                    <button type="button" class="bg-video__btn-pause"></button>
+                </div>
+            </div>
         </div>
+
+        <div class="bg-video bg-video--size-wide" data-video="LXb3EKWsInQ">
+            <div class="bg-video__embed">
+                <div class="bg-video__overlay">
+                    <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+                </div>
+                <p class="bg-video__title">Default 16:9</p>
+                <div class="bg-video__controller">
+                    <button type="button" class="bg-video__btn-sound"></button>
+                    <button type="button" class="bg-video__btn-pause"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-video bg-video--size-cinema" data-video="LXb3EKWsInQ">
+            <div class="bg-video__embed">
+                <div class="bg-video__overlay">
+                    <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+                </div>
+                <p class="bg-video__title">Cinema 21:9</p>
+                <div class="bg-video__controller">
+                    <button type="button" class="bg-video__btn-sound"></button>
+                    <button type="button" class="bg-video__btn-pause"></button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- BG Video Scripts - Must be included -->

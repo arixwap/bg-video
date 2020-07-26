@@ -18,7 +18,7 @@ function onYouTubeIframeAPIReady() {
         let ytPlayer;
         let bgVideoID = element.getAttribute('data-video'); // Get the video ID passed to the data-video attribute
         let ytPlayerId = "yt-player-" + i;
-        let btnMute = element.querySelector('.bg-video__btn-mute');
+        let btnSound = element.querySelector('.bg-video__btn-sound');
         let btnPause = element.querySelector('.bg-video__btn-pause');
 
         // Get video config from data attribute
@@ -33,7 +33,7 @@ function onYouTubeIframeAPIReady() {
         if (element.getAttribute('data-mute') != undefined) {
             if (element.getAttribute('data-mute') == '0' || element.getAttribute('data-mute') == 'false') {
                 mute = 0;
-                btnMute.classList.add('active');
+                btnSound.classList.add('active');
             }
         }
 
@@ -56,7 +56,7 @@ function onYouTubeIframeAPIReady() {
         // Create element for video iframe container
         let playerWrapper = document.createElement('div');
         playerWrapper.classList.add('bg-video__player-wrapper');
-        element.prepend(playerWrapper);
+        element.querySelector('.bg-video__embed').prepend(playerWrapper);
 
         // Create element for video iframe player
         let ytPlayerElement = document.createElement('div');
@@ -105,7 +105,17 @@ function onYouTubeIframeAPIReady() {
                     const videoOverlay = element.querySelector('.bg-video__overlay');
 
                     if (event.data == YT.PlayerState.PLAYING) {
-                        videoOverlay.classList.add('fadeOut');
+                        // Timeout set for prevent youtube information shown on fit video mode
+                        // Youtube information will be hidden after 3 second
+                        setTimeout(function() {
+                            videoOverlay.classList.add('fadeOut');
+
+                            // Reset video time to beginning on first loaded.
+                            if (element.classList.contains('loaded') == false) {
+                                event.target.seekTo(0);
+                                element.classList.add('loaded');
+                            }
+                        }, 3000)
                     }
 
                     // Play Pause video function
@@ -113,20 +123,22 @@ function onYouTubeIframeAPIReady() {
                         if (event.data == YT.PlayerState.PLAYING) {
                             event.target.pauseVideo();
                             btnPause.classList.add('active');
+                            element.classList.add('paused');
                         } else {
                             event.target.playVideo();
                             btnPause.classList.remove('active');
+                            element.classList.remove('paused');
                         }
                     }
 
                     // Mute Unmute video function
-                    btnMute.onclick = function() {
-                        if (event.target.isMuted() == false) {
-                            event.target.mute();
-                            btnMute.classList.add('active');
-                        } else {
+                    btnSound.onclick = function() {
+                        if (event.target.isMuted()) {
                             event.target.unMute();
-                            btnMute.classList.remove('active');
+                            btnSound.classList.add('active');
+                        } else {
+                            event.target.mute();
+                            btnSound.classList.remove('active');
                         }
                     }
 

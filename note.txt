@@ -1,17 +1,20 @@
 What we need:
+- Documentation
+
+
+- Video Size :                                                          [DONE]
+  - fullscreen          : in Desktop fit with screen height, in mobile become ratio 16:9
+  - classic             : Ratio 4:3   | padding-top 75%
+  - wide                : Ratio 16:9  | padding-top 56.25%
+  - cinema (default)    : Ratio 21:9  | padding-top 42.86%
 - Script can be used for multiple video inside single page              [DONE]
 - Get video from ID inputed                                             [DONE]
 - Element Overlay : Before video loaded                                 [DONE]
 - Caption Title                                                         [DONE]
 - Button for Play & Mute                                                [DONE]
-- Video Position :
-  - Cover (Default)
-  - Fit : Show all video and black border outside frame
-- Video Size :
-  - fullscreen          : in Desktop fit with screen height, in mobile become ratio 16:9
-  - default             : Ratio 4:3   | padding-top 75%
-  - wide                : Ratio 16:9  | padding-top 56.25%
-  - cinema              : Ratio 21:9  | padding-top 42.86%
+- Video Position :                                                      [DONE]
+  - Cover (Default)                                                     [DONE]
+  - Fit : Show all video and black border outside frame                 [DONE]
 
 
 Credit :
