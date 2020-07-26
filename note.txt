@@ -1,7 +1,20 @@
 What we need:
 - Script can be used for multiple video inside single page              [DONE]
 - Get video from ID inputed                                             [DONE]
-- Video layout : Cover (Default), Contain / Fit, Fill / Stretch
-- Element Overlay : Before video loaded
-- Caption Title
-- Button for Play & Mute
+- Element Overlay : Before video loaded                                 [DONE]
+- Caption Title                                                         [DONE]
+- Button for Play & Mute                                                [DONE]
+- Video Position :
+  - Cover (Default)
+  - Fit : Show all video and black border outside frame
+- Video Size :
+  - fullscreen          : in Desktop fit with screen height, in mobile become ratio 16:9
+  - default             : Ratio 4:3   | padding-top 75%
+  - wide                : Ratio 16:9  | padding-top 56.25%
+  - cinema              : Ratio 21:9  | padding-top 42.86%
+
+
+Credit :
+- Florent CLANET - https://codepen.io/heyflo/pen/zLzpJJ
+- Youtube API - https://developers.google.com/youtube
+- Fontello - http://fontello.com

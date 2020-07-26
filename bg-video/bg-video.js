@@ -18,21 +18,39 @@ function onYouTubeIframeAPIReady() {
         let ytPlayer;
         let bgVideoID = element.getAttribute('data-video'); // Get the video ID passed to the data-video attribute
         let ytPlayerId = "yt-player-" + i;
+        let btnMute = element.querySelector('.bg-video__btn-mute');
+        let btnPause = element.querySelector('.bg-video__btn-pause');
+
+        // Get video config from data attribute
+        let autoplay = 1;
+        let mute = 1;
+        if (element.getAttribute('data-autoplay') != undefined) {
+            if (element.getAttribute('data-autoplay') == '0' || element.getAttribute('data-autoplay') == 'false') {
+                autoplay = 0;
+                btnPause.classList.add('active');
+            }
+        }
+        if (element.getAttribute('data-mute') != undefined) {
+            if (element.getAttribute('data-mute') == '0' || element.getAttribute('data-mute') == 'false') {
+                mute = 0;
+                btnMute.classList.add('active');
+            }
+        }
 
         // Set the player options
         let playerOptions = {
-            autoplay: 1, // Autoplay + mute has to be activated (value = 1) if you want to autoplay it everywhere. Chrome/Safari/Mobile
-            mute: 1,
-            autohide: 1,
-            modestbranding: 1,
-            rel: 0,
-            showinfo: 0,
-            controls: 0,
-            disablekb: 1,
-            enablejsapi: 1,
-            iv_load_policy: 3,
-            loop: 1, // For looping video you have to have loop to 1
-            playlist: bgVideoID, // Playlist is value equal to your currently playing video
+            'autoplay': autoplay,
+            'mute': mute,
+            'autohide': 1,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'controls': 0,
+            'disablekb': 1,
+            'enablejsapi': 1,
+            'iv_load_policy': 3,
+            'loop': 1, // For looping video you have to have loop to 1
+            'playlist': bgVideoID, // Playlist is value equal to your currently playing video
         }
 
         // Create element for video iframe container
@@ -47,15 +65,17 @@ function onYouTubeIframeAPIReady() {
 
         // Generate video player
         ytPlayer = new YT.Player(ytPlayerId, {
-            width: '1280',
-            height: '720',
-            videoId: bgVideoID,
-            playerVars: playerOptions,
-            events: {
+            // 'width': '1280', // I think these things not working
+            // 'height': '720', // I think these things not working
+            'videoId': bgVideoID,
+            'playerVars': playerOptions,
+            'events': {
 
                 // The API will call this function when the video player is ready.
                 'onReady': function(event) {
+
                     event.target.playVideo();
+                    if (autoplay == 0) event.target.pauseVideo(); // Pause video if autoplay is set false
 
                     // Get the duration of the currently playing video
                     const videoDuration = event.target.getDuration();
@@ -73,18 +93,43 @@ function onYouTubeIframeAPIReady() {
                             event.target.seekTo(0);
                         }
                     }, 1000);
+
                 },
 
                 // When the player is ready and when the video starts playing
                 // The state changes to PLAYING and we can remove our overlay
                 // This is needed to mask the preloading
                 'onStateChange': function onPlayerStateChange(event) {
+
                     // Get the video overlay, to mask it when the video is loaded
-                    const videoOverlay = element.querySelector('.js-video-overlay');
+                    const videoOverlay = element.querySelector('.bg-video__overlay');
 
                     if (event.data == YT.PlayerState.PLAYING) {
-                        videoOverlay.classList.add('bg-video__overlay--fadeOut');
+                        videoOverlay.classList.add('fadeOut');
                     }
+
+                    // Play Pause video function
+                    btnPause.onclick = function() {
+                        if (event.data == YT.PlayerState.PLAYING) {
+                            event.target.pauseVideo();
+                            btnPause.classList.add('active');
+                        } else {
+                            event.target.playVideo();
+                            btnPause.classList.remove('active');
+                        }
+                    }
+
+                    // Mute Unmute video function
+                    btnMute.onclick = function() {
+                        if (event.target.isMuted() == false) {
+                            event.target.mute();
+                            btnMute.classList.add('active');
+                        } else {
+                            event.target.unMute();
+                            btnMute.classList.remove('active');
+                        }
+                    }
+
                 }
 
             }

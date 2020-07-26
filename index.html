@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Video Sample</title>
     <!-- BG Video Styles - Must be included -->
-    <link rel="stylesheet" href="bg-video-style.css">
+    <link rel="stylesheet" href="bg-video/bg-video.css">
     <style>
         * {
             box-sizing: border-box;
@@ -16,9 +16,12 @@
             margin: 0;
         }
 
-        .bg-video {
-            height: 100vh;
-            max-height: 100vh;
+        h1 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -26,31 +29,19 @@
 <body>
 
     <!-- Example Background Video Covered -->
-    <div class="bg-video" data-video="LXb3EKWsInQ" data-autoplay="true" data-mute="true" data-button-play="false" data-button-mute="false">
-        <div class="bg-video__overlay js-video-overlay">
+    <div class="bg-video" data-video="LXb3EKWsInQ">
+        <div class="bg-video__overlay">
             <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
         </div>
-        <h1 class="bg-video__title">Video Covered</h1>
-        <!-- <div class="bg-video__controller">
-            <button type="button" class="bg-video__btn-mute">Mute</button>
-            <button type="button" class="bg-video__btn-play">Play / Pause</button>
-        </div> -->
-    </div>
-
-    <!-- Example Background Video Fit -->
-    <div class="bg-video bg-video--fit" data-video="LXb3EKWsInQ" data-autoplay="true" data-mute="true" data-button-play="false" data-button-mute="false">
-        <div class="bg-video__overlay js-video-overlay">
-            <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
+        <h1 class="bg-video__title">Title</h1>
+        <div class="bg-video__controller">
+            <button type="button" class="bg-video__btn-mute"></button>
+            <button type="button" class="bg-video__btn-pause"></button>
         </div>
-        <h1 class="bg-video__title">Video Fit</h1>
-        <!-- <div class="bg-video__controller">
-            <button type="button" class="bg-video__btn-mute">Mute</button>
-            <button type="button" class="bg-video__btn-play">Play / Pause</button>
-        </div> -->
     </div>
 
     <!-- BG Video Scripts - Must be included -->
-    <script src="bg-video-script.js"></script>
+    <script src="bg-video/bg-video.js"></script>
 </body>
 
 </html>
