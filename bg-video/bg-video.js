@@ -37,6 +37,13 @@ function onYouTubeIframeAPIReady() {
             }
         }
 
+        // Check if element is appear or not in screen
+        // If not appear, set autoplay off and mute
+        if (element.offsetHeight <= 0 || element.offsetWidth <= 0) {
+            autoplay = 0;
+            mute = 1;
+        }
+
         // Set the player options
         let playerOptions = {
             'autoplay': autoplay,

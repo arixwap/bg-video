@@ -40,13 +40,19 @@
         .row .bg-video {
             flex: 0 0 30%;
         }
+
+        @media (max-width: 768px) {
+            .hide-mobile {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Example Background Video -->
-    <div class="bg-video bg-video--size-full" data-video="LXb3EKWsInQ">
+    <div class="bg-video bg-video--size-full hide-mobile" data-video="LXb3EKWsInQ" data-mute="false">
         <div class="bg-video__embed">
             <div class="bg-video__overlay">
                 <img src="https://img.youtube.com/vi/LXb3EKWsInQ/maxresdefault.jpg" alt="">
