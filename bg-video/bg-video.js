@@ -72,8 +72,6 @@ function onYouTubeIframeAPIReady() {
 
         // Generate video player
         ytPlayer = new YT.Player(ytPlayerId, {
-            // 'width': '1280', // I think these things not working
-            // 'height': '720', // I think these things not working
             'videoId': bgVideoID,
             'playerVars': playerOptions,
             'events': {
@@ -82,7 +80,9 @@ function onYouTubeIframeAPIReady() {
                 'onReady': function(event) {
 
                     event.target.playVideo();
-                    if (autoplay == 0) event.target.pauseVideo(); // Pause video if autoplay is set false
+                    if ( autoplay == 0 ) {
+                        event.target.pauseVideo();
+                    }
 
                     // Get the duration of the currently playing video
                     const videoDuration = event.target.getDuration();
@@ -106,7 +106,7 @@ function onYouTubeIframeAPIReady() {
                 // When the player is ready and when the video starts playing
                 // The state changes to PLAYING and we can remove our overlay
                 // This is needed to mask the preloading
-                'onStateChange': function onPlayerStateChange(event) {
+                'onStateChange': function(event) {
 
                     // Get the video overlay, to mask it when the video is loaded
                     const videoOverlay = element.querySelector('.bg-video__overlay');
@@ -125,34 +125,43 @@ function onYouTubeIframeAPIReady() {
                         }, 3000)
                     }
 
-                    // Play Pause video function
-                    btnPause.onclick = function() {
-                        if (event.data == YT.PlayerState.PLAYING) {
-                            event.target.pauseVideo();
-                            btnPause.classList.add('active');
-                            element.classList.add('paused');
-                        } else {
-                            event.target.playVideo();
-                            btnPause.classList.remove('active');
-                            element.classList.remove('paused');
-                        }
-                    }
-
-                    // Mute Unmute video function
-                    btnSound.onclick = function() {
-                        if (event.target.isMuted()) {
-                            event.target.unMute();
-                            btnSound.classList.add('active');
-                        } else {
-                            event.target.mute();
-                            btnSound.classList.remove('active');
-                        }
-                    }
-
                 }
-
             }
         });
 
+        // Play pause video function
+        btnPause.onclick = function() {
+            if ( btnPause.classList.contains('active') ) {
+                // play video
+                btnPause.classList.remove('active');
+                element.classList.remove('paused');
+                ytPlayer.playVideo();
+            } else {
+                // pause video
+                btnPause.classList.add('active');
+                element.classList.add('paused');
+                ytPlayer.pauseVideo();
+            }
+        }
+
+        // Mute unmute video function
+        btnSound.onclick = function() {
+            if ( btnSound.classList.contains('active') ) {
+                // mute video
+                btnSound.classList.remove('active');
+                ytPlayer.mute();
+            } else {
+                // umute video
+                btnSound.classList.add('active');
+                ytPlayer.unMute();
+            }
+        }
+
+        // Autoplay the video
+        setTimeout(function() {
+            if ( autoplay ) {
+                ytPlayer.playVideo();
+            }
+        }, 3000)
     })
 }
